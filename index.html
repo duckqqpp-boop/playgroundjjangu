@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>당신의 공원은? 🌳</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400;700&family=Nanum+Pen+Script&family=Poor+Story&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- 배경 낙서 요소들 -->
+  <div class="bg-doodles" aria-hidden="true">
+    <span class="doodle d1">⭐</span>
+    <span class="doodle d2">🌸</span>
+    <span class="doodle d3">💥</span>
+    <span class="doodle d4">🌀</span>
+    <span class="doodle d5">⚡</span>
+    <span class="doodle d6">🍀</span>
+    <span class="doodle d7">🌈</span>
+    <span class="doodle d8">💫</span>
+    <span class="doodle d9">🔥</span>
+    <span class="doodle d10">🎵</span>
+  </div>
+
+  <!-- ===== 시작 화면 ===== -->
+  <div id="screen-start" class="screen active">
+    <div class="start-inner">
+
+      <div class="title-block">
+        <div class="wobble-tag">🧻 성향테스트</div>
+        <h1 class="main-title">당신의<br/>공원은?</h1>
+        <div class="subtitle-box">
+          <p class="subtitle">15개의 질문으로 알아보는<br/>나만의 공원 테스트 🌳</p>
+        </div>
+      </div>
+
+      <div class="mascot-area">
+        <div class="mascot-face">
+          <div class="face-circle">
+            <div class="eyes-row">
+              <div class="eye"><div class="pupil"></div></div>
+              <div class="eye"><div class="pupil"></div></div>
+            </div>
+            <div class="nose">👃</div>
+            <div class="mouth">😁</div>
+          </div>
+          <div class="butt-hint">🍑</div>
+        </div>
+        <div class="speech-bubble">
+          어른들은<br/>모르는 공원이야~!
+        </div>
+      </div>
+
+      <div class="warning-box">
+        <span class="warning-icon">⚠️</span>
+        매우 진지하지 않은 테스트입니다.
+      </div>
+
+      <!-- 이전 결과 -->
+      <div id="prev-result-box" class="prev-result-box" style="display:none;">
+        <p class="prev-label">📌 저번에 나온 결과:</p>
+        <p id="prev-result-name" class="prev-result-name"></p>
+        <button id="btn-show-prev" class="btn-small">다시 보기</button>
+      </div>
+
+      <button id="btn-start" class="btn-main">
+        테스트 시작하기 🚀
+      </button>
+
+      <p class="time-hint">⏰ 약 2~3분 소요</p>
+    </div>
+  </div>
+
+  <!-- ===== 질문 화면 ===== -->
+  <div id="screen-quiz" class="screen">
+    <div class="quiz-inner">
+
+      <div class="progress-area">
+        <div class="progress-label">
+          <span id="q-num">1</span> / 15
+        </div>
+        <div class="progress-bar-wrap">
+          <div id="progress-bar" class="progress-bar" style="width:0%"></div>
+        </div>
+      </div>
+
+      <div id="question-card" class="question-card">
+        <div class="q-label">Q<span id="q-label-num">1</span></div>
+        <p id="question-text" class="question-text"></p>
+      </div>
+
+      <div id="choices" class="choices">
+        <button id="choice-a" class="choice-btn choice-a" data-choice="a">
+          <span class="choice-letter">A</span>
+          <span id="choice-a-text" class="choice-text"></span>
+        </button>
+        <div class="vs-badge">VS</div>
+        <button id="choice-b" class="choice-btn choice-b" data-choice="b">
+          <span class="choice-letter">B</span>
+          <span id="choice-b-text" class="choice-text"></span>
+        </button>
+      </div>
+
+      <button id="btn-restart-quiz" class="btn-tiny">← 처음으로</button>
+    </div>
+  </div>
+
+  <!-- ===== 분석 중 화면 ===== -->
+  <div id="screen-loading" class="screen">
+    <div class="loading-inner">
+      <div class="loading-mascot">
+        <div class="spin-emoji">🌀</div>
+      </div>
+      <h2 class="loading-title">분석 중...</h2>
+      <div class="loading-bars">
+        <div class="lb lb1"></div>
+        <div class="lb lb2"></div>
+        <div class="lb lb3"></div>
+        <div class="lb lb4"></div>
+        <div class="lb lb5"></div>
+      </div>
+      <p id="loading-msg" class="loading-msg">당신의 공원을 찾는 중이에요...</p>
+    </div>
+  </div>
+
+  <!-- ===== 결과 화면 ===== -->
+  <div id="screen-result" class="screen">
+    <div class="result-inner">
+
+      <div class="result-top">
+        <div class="result-confetti" id="confetti-area" aria-hidden="true"></div>
+        <p class="result-announce">🎉 분석 완료!</p>
+        <p class="result-sub">당신의 공원은...</p>
+      </div>
+
+      <div class="park-name-box">
+        <h2 id="result-park-name" class="park-name"></h2>
+      </div>
+
+      <div class="result-emoji-area">
+        <span id="result-emoji" class="result-big-emoji">🌳</span>
+      </div>
+
+      <div class="result-desc-box">
+        <p id="result-desc" class="result-desc"></p>
+      </div>
+
+      <div class="search-hint-box">
+        <p class="search-hint">※ 해당 그림은 직접 네이버나 구글에 검색해 보세요.</p>
+      </div>
+
+      <div class="share-section">
+        <p class="share-title">친구들에게도 공유해보세요!</p>
+        <p class="share-sub">과연 내 친구들은 어떤 공원이 나올까? 🤔</p>
+        <button id="btn-share" class="btn-share">결과 공유하기 📤</button>
+        <div id="share-toast" class="share-toast">링크가 복사됐어요! 📋</div>
+      </div>
+
+      <button id="btn-retry" class="btn-retry">다시 테스트하기 🔄</button>
+
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
